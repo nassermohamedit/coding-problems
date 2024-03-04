@@ -1,4 +1,7 @@
-// https://codeforces.com/problemset/problem/1761/C
+/**
+  * tags: classic, educational, graphs, dfs
+  * linek: https://codeforces.com/problemset/problem/1761/C
+*/
 
 import java.util.*
 
