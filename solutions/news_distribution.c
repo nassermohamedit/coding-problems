@@ -3,18 +3,18 @@
  * statement: https://codeforces.com/problemset/problem/1167/C
 */
 
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
 
 
-int n, m;
+int n, m, k, u, v;
 
-int arr[500005], size[500005];
+int arr[500005];
 
 int find(int i) {
-    if (i == arr[i])
-       return i;
+    if (arr[i] < 0) return i;
     arr[i] = find(arr[i]);
     return arr[i];
 }
@@ -24,12 +24,12 @@ void union_sets(int i, int j) {
     int b = find(j);
     if (a == b)
         return;
-    if (size[a] > size[b]) {
-        size[a] += size[b];
+    if (arr[a] < arr[b]) {
+        arr[a] += arr[b];
         arr[b] = a;
     }
     else {
-        size[b] += size[a];
+        arr[b] += arr[a];
         arr[a] = b;
    }
 }
@@ -39,27 +39,21 @@ void union_sets(int i, int j) {
 int main(int argc, char* argv[]) {
     scanf("%d%d", &n, &m);
     for (int i=0; i<n; i++) {
-        arr[i] = i;
-        size[i] = 1;
+        arr[i] = -1;
     }
     for (int i=0; i<m; i++) {
-        int k;
         scanf("%d", &k);
         if (k > 0) {
-            int u;
             scanf("%d", &u);
-            --u;
             while (--k) {
-                int v;
                 scanf("%d", &v);
-                --v;
-                union_sets(u, v);
-                u = v;
+                union_sets(u-1, v-1);
             }
         }
     }
     for (int i=0; i<n; i++) {
-        printf("%d ", size[find(i)]);
+        printf("%d ", -arr[find(i)]);
     }
     return 0;
 }
+
