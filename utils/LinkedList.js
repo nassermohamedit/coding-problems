@@ -13,13 +13,13 @@ class LinkedList {
     }
 
     push(e) {
-        let node = Node(data);
+        let node = new Node(e);
         if (this.head) node.next = this.head;
         this.head = node;
     }
 
     isEmpty() {
-        return this.head == null;
+        return this.head === null;
     }
 
     pop() {
