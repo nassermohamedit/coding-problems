@@ -22,6 +22,16 @@ process.stdin.on("end", (_) => {
 function readline() {
     return inputString[currentLine++];
 }
+
+
+function readArr(sep=" ", mapper=e => e) {
+    return readline().split(sep).map(mapper);
+}
+
+function readIntArr(sep=" ") {
+    return readArr(sep, mapper=e => parseInt(e));
+}
+
 function main() {
     let t = +(readline());
 }
