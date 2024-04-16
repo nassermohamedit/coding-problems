@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Idea: Let A be an array of size N such that A[i] > 0 (no 0 elements) for all 0 <= i < N.
+ * Idea: Let A be an array of size N such that A[i] != 0 (no 0 elements) for all 0 <= i < N.
  * Let's prove that the optimal subarray either starts at index 0 or ends at index N - 1.
  * Proof: Let [i, j] be the longest optimal subarray such that i > 0 and j < N - 1.
  * Let P be the product of [i, j]. Since it is optimal: P * A[i - 1] < P and P * A[j + 1] < P and P * A[i - 1] * A[j + 1] < P.
