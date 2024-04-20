@@ -1,40 +1,68 @@
-// https://codeforces.com/problemset/problem/1917/A
+import java.io.*;
+import java.util.*;
 
-import java.util.Scanner;
 
-public class LeastProduct {
+/**
+ * tags: impl
+ * statement: https://codeforces.com/contest/1917/problem/A
+ */
 
-    static int t;
-    static int n;
-    static int[] a = new int[107];
+public class Main {
 
-    static void solve() {
-        int sign = 1;
-        for (int i=0; i<n; ++i) {
-            if (a[i] == 0) {
-                System.out.println(0);
-                return;
+    static Scanner in = new Scanner(System.in);
+    static BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
+
+    public static void main(String[] args) throws IOException {
+        int t = in.nextInt();
+        int[] a = new int[107];
+        while (t-- > 0) {
+            int n = in.nextInt();
+            for (int i = 0; i < n; ++i) {
+                a[i] = in.nextInt();
             }
-            if (a[i] < 0) sign *= -1;
-        }
-        if (sign > 0)
-            System.out.println("1\n1 0");
-        else
-            System.out.println(0);
-    }
-
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        
-        t = sc.nextInt();
-        for (int i=0; i<t; ++i) {
-            n = sc.nextInt();
-            for (int j=0; j<n; ++j) {
-                a[j] = sc.nextInt();
+            int p = 1;
+            for (int i = 0; i < n; ++i) {
+                if (a[i] < 0)
+                    p *= -1;
+                else if (a[i] == 0)
+                    p = 0;
             }
-            solve();
+            if (p <= 0) {
+                out.write("0\n");
+            }
+            else {
+                out.write("1\n1 0\n");
+            }
         }
-        sc.close();
+        out.flush();
     }
 }
+class Scanner {
+
+    private final BufferedReader br;
+    private StringTokenizer st;
+
+    public Scanner(InputStream in) {
+        this.br = new BufferedReader(new InputStreamReader(in));
+    }
+
+    public String next() {
+        while (st == null || !st.hasMoreTokens()) {
+            try {
+                st = new StringTokenizer(this.br.readLine());
+            } catch (IOException e) {
+                throw new RuntimeException();
+            }
+        }
+        return st.nextToken();
+    }
+
+    public int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    public long nextLong() {
+        return Long.parseLong(next());
+    }
+}
+
