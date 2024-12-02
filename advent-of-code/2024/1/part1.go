@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	inFile, _ := os.Open("1.in")
+	inFile, _ := os.Open("in")
 	defer inFile.Close()
 	writer := bufio.NewWriter(os.Stdout);
 	defer writer.Flush();
