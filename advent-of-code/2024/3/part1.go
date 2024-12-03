@@ -71,8 +71,8 @@ func transition(r rune) {
 	case Start:
 		if r == 'm' {
 			state = M
-			reset = false
 		}
+		reset = false
 	case M:
 		if r == 'u' {
 			state = U
@@ -146,6 +146,7 @@ func transition(r rune) {
 	}
 	if reset {
 		resetState()
+		transition(r)
 	}
 }
 
