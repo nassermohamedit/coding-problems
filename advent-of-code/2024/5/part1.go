@@ -42,6 +42,18 @@ func main() {
 			arr[i], _ = strconv.Atoi(line[i])
 		}
 		var ordered = true
+		// We don't know if the given rules cover all possible pairs
+		// And there is no cnstraint on the range of the numbers to begin with
+		// so we can't assume that order[x][y] == 0 means that x and y are equal
+		// order[x][y] == 0 when there is no rule given for (x, y) or x == y
+		// We would pre-compute order[x][y] for all (x, y) but still we don't know
+		// the range in which the values vary.
+		// So deciding if the array is ordered in one linear pass is not possible
+		// Given x y0 y1 .. yk z.
+		// it could be the case that x <= y0, y0 <= y1 .. yk <= z but z < x
+		// One linear pass (compairing consecutive pairs) will not detect this violation
+		// We can either compute the rule for a pair of consecurive elements if not given
+		// as we iterate, or we can do a simple nested loop as follow
 		for i := 0; i < n; i++ {
 			for j := i + 1; j < n; j++ {
 				if order[arr[i]][arr[j]] == -1 {
